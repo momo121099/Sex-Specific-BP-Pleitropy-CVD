@@ -130,10 +130,14 @@ source('shiny_readfile_select_region.R')
 ```
 ## References:
 Please cite this paper if you utilize this implementation:
+
 Yang, M.-L., Xu, C., Gupte, T., Hoffmann, T. J., Iribarren, C., Zhou, X., & Ganesh, S. K. (2023). Leveraging sex differences of the complex genetic architecture of blood pressure to define sex-biased arterial genome regulation and cardiovascular disease risks.
 
 ## About our Lab:
-PI: Dr. Santhi Ganesh, University of Michigan Ann Arbor, Cardiovascular Medicine, U.S.A.
+PI: Dr. Santhi Ganesh 
+
+University of Michigan Ann Arbor, Cardiovascular Medicine, U.S.A.
+
 https://www.ganeshlab.org/
 
 
