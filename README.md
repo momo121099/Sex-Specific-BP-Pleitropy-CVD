@@ -11,6 +11,7 @@ library(remotes)
 install_github("chr1swallace/coloc@main",build_vignettes=TRUE)
 install.packages('data.table')
 install.packages('reshape')
+
 source('BP_sex_specific_CVD_colocalization_function.R')
 ```
 
@@ -84,19 +85,19 @@ The posterior probability of cross-trait GWAS colocalization between female bloo
 bp.sex.region.locus.plot(outname,cvd.data,bp.trait,cvd.trait,pos.chr,pos.st,pos.ed)
 ```
 #Arguments:
-outname: output file name prefix
+*outname: output file name prefix
 
-cvd.data: This parameter represents the user's GWAS data for the cardiovascular disease (CVD) trait of interest. The format for this input file is described above.
+*cvd.data: This parameter represents the user's GWAS data for the cardiovascular disease (CVD) trait of interest. The format for this input file is described above.
 
-bp.trait: Specify the sex-stratified GWAS data for blood pressure (BP) traits sourced from the UK Biobank (UKB), as detailed by ML Yang et al. You have the option to choose from 'SBP' (systolic blood pressure), 'DBP' (diastolic blood pressure), or 'PP' (pulse pressure).
+*bp.trait: Specify the sex-stratified GWAS data for blood pressure (BP) traits sourced from the UK Biobank (UKB), as detailed by ML Yang et al. You have the option to choose from 'SBP' (systolic blood pressure), 'DBP' (diastolic blood pressure), or 'PP' (pulse pressure).
 
-cvd.trait: Input the name of the user's cardiovascular disease (CVD) trait of interest. This trait name will be incorporated into the output file name for reference.
+*cvd.trait: Input the name of the user's cardiovascular disease (CVD) trait of interest. This trait name will be incorporated into the output file name for reference.
 
-post.chr: Chromosome for plotting the regional analysis.
+*post.chr: Chromosome for plotting the regional analysis.
 
-post.st: Start base pair position (hg19) for plotting the regional analysis.
+*post.st: Start base pair position (hg19) for plotting the regional analysis.
 
-post.ed: End base pair position (hg19) for plotting the regional analysis.
+*post.ed: End base pair position (hg19) for plotting the regional analysis.
 
 ## Example Usage (Please use files in the data folder):
 Source the function file first
