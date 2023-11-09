@@ -116,7 +116,9 @@ Plot the candidate sex-specific pleiotropy regions
 ```
 bp.sex.region.locus.plot(outname='13q34',cvd.data,bp.trait='PP',cvd.trait='FMD',pos.chr=13,pos.st=110546007,pos.ed=111046007)
 ```
-## Another tool available is the R Shiny app, which enables interactive viewing of regional plots for sex-stratified blood pressure (BP) genetic association results.
+## Another tool available is the R Shiny app, which enables interactive viewing of regional plots for sex-stratified blood pressure (BP) genetic association results. 
+NOTE: Only regions with significant BP-associated variants will be shown. 
+
 Source the shiny app function file to use
 ```
 source('shiny_readfile_select_region.R')
