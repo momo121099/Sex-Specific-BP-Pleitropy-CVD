@@ -28,3 +28,43 @@ bp.sex.colocalization(cvd.data,bp.trait='PP',cvd.trait='CVD',size=1000,p=0.3,Typ
 *diff: Set the threshold for the absolute difference in posterior probabilities between male and female BP colocalization with CVD. This threshold is employed to identify genes that exhibit sex-biased colocalization.
 
 *cutoff: Establish a threshold for the posterior probability to identify genes displaying sex-specific colocalization. Genes meeting this criterion will have a posterior probability greater than this cutoff in only one sex. The combination of the diff and cutoff values will be used together to screen for the top BP genes displaying sex-specific pleiotropic effects with CVD.
+
+## Value:
+Two files will be generated in the same directory folder:
+
+1. "bp.trait_cvd.trait_GWAS_colocalization_topSEXGene.csv": This file contains data on genes that meet the specified threshold in the function to identify BP-associated genetic regions exhibiting sex-specific and sex-biased colocalization or pleiotropic effects with the user's CVD trait.
+
+2. "bp.trait_cvd.trait_GWAS_colocalization.csv": This file provides the posterior probability output for cross-trait GWAS colocalization between blood pressure (BP) and the user's CVD trait across all BP regions.
+
+## CVD GWAS Input file format
+An example file is available in the GitHub directory, sourced from the FMD GWAS (A. Georges, M.L. Yang, T.E. Berrandou, et al., 2021).
+Please ensure that the header of your file matches the following specifications:
+
+> headers: CHR  BP  BETA  SE  pval SNPID
+> 
+>    CHR     BP    BETA     SE   pval    SNPID
+> 
+> 1 845635 -0.0218 0.0652 0.7382 1:845635
+> 
+> 1 845938 -0.0295 0.0643 0.6463 1:845938
+> 
+> 1 846078 -0.0066 0.0651 0.9197 1:846078
+> 
+
+## Example Usage:
+Source the function file first
+```
+BP_sex_specific_CVD_colocalization_function.R
+```
+Read the input CVD GWAS file 
+```
+input=read.table('example_data_fmd.txt',header=T)
+head(input)
+```
+
+>
+
+## References:
+Please cite this paper if you utilized this implementation
+
+
