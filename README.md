@@ -47,7 +47,7 @@ bp.sex.colocalization(cvd.data,bp.trait='PP',cvd.trait='CVD',...)
 
 *cutoff: Establish a threshold for the posterior probability to identify genes displaying sex-specific colocalization. Genes meeting this criterion will have a posterior probability greater than this cutoff in only one sex. The combination of the diff and cutoff values will be used together to screen for the top BP genes displaying sex-specific pleiotropic effects with CVD.
 
-## Value:
+## Output Value:
 Two files will be generated in the same directory folder:
 
 1. "bp.trait_cvd.trait_GWAS_colocalization_topSEXGene.csv": This file contains data on genes that meet the specified threshold in the function to identify BP-associated genetic regions exhibiting sex-specific and sex-biased colocalization or pleiotropic effects with the user's CVD trait.
@@ -82,7 +82,7 @@ The posterior probability of cross-trait GWAS colocalization between female bloo
 > 
 > MAP9        4 156141307 156656653 0.97318459 0.167642370
 > 
-## Follow-up visualization of regional plot
+## Follow-up visualization (regional plot)
 #Use the following function:
 ```
 bp.sex.region.locus.plot(outname,cvd.data,bp.trait,cvd.trait,pos.chr,pos.st,pos.ed)
