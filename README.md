@@ -1,4 +1,4 @@
-# BP-sex-specific-pleiotropy
+# BP sex-specific pleiotropy of CVD
 <img src="https://github.com/momo121099/BP-sex-specific-pleiotropy/blob/main/Picture1.png" width=60% height=60%>
 
 
