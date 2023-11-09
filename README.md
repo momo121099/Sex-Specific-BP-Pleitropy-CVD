@@ -83,7 +83,26 @@ The posterior probability of cross-trait GWAS colocalization between female bloo
 > COL4A2     13 110790681 111290681 0.91783466 0.002051632
 > 
 > MAP9        4 156141307 156656653 0.97318459 0.167642370
-> 
+>
+
+## Example Usage (Please use files in the data folder):
+Source the function file first
+```
+source('BP_sex_specific_CVD_colocalization_function.R')
+```
+Read the input CVD GWAS file 
+```
+cvd.data=fread('example_data_fmd.txt',header=T)
+```
+Run the BP sex-stratified colocalization of CVD GWAS provided
+```
+bp.sex.colocalization(cvd.data,bp.trait='PP',cvd.trait='FMD',size=8656,p=0.3,Type='b',poster.p='H4',gene.pull.method='max',wd=250000, diff=0.5, cutoff=0.5)
+```
+Plot the candidate sex-specific pleiotropy regions
+```
+bp.sex.region.locus.plot(outname='13q34',cvd.data,bp.trait='PP',cvd.trait='FMD',pos.chr=13,pos.st=110546007,pos.ed=111046007)
+```
+
 ## Follow-up visualization (regional plot)
 #Use the following function:
 ```
@@ -104,23 +123,6 @@ bp.sex.region.locus.plot(outname,cvd.data,bp.trait,cvd.trait,pos.chr,pos.st,pos.
 
 *post.ed: End base pair position (hg19) for plotting the regional analysis.
 
-## Example Usage (Please use files in the data folder):
-Source the function file first
-```
-source('BP_sex_specific_CVD_colocalization_function.R')
-```
-Read the input CVD GWAS file 
-```
-cvd.data=fread('example_data_fmd.txt',header=T)
-```
-Run the BP sex-stratified colocalization of CVD GWAS provided
-```
-bp.sex.colocalization(cvd.data,bp.trait='PP',cvd.trait='FMD',size=8656,p=0.3,Type='b',poster.p='H4',gene.pull.method='max',wd=250000, diff=0.5, cutoff=0.5)
-```
-Plot the candidate sex-specific pleiotropy regions
-```
-bp.sex.region.locus.plot(outname='13q34',cvd.data,bp.trait='PP',cvd.trait='FMD',pos.chr=13,pos.st=110546007,pos.ed=111046007)
-```
 ## Another tool available is the R Shiny app, which enables interactive viewing of regional plots for sex-stratified BP genetic association results. 
 NOTE: Only regions with significant BP-associated variants will be shown. 
 
