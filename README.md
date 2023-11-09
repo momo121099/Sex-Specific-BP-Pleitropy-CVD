@@ -61,14 +61,14 @@ The posterior probability of cross-trait GWAS colocalization between female bloo
 > COL4A2    0.91857381 0.002075756
 > 
 
-## Example Usage:
+## Example Usage (Please use files in the data folder):
 Source the function file first
 ```
-BP_sex_specific_CVD_colocalization_function.R
+source(BP_sex_specific_CVD_colocalization_function.R)
 ```
 Read the input CVD GWAS file 
 ```
-input=read.table('example_data_fmd.txt',header=T)
+cvd.data=read.table('example_data_fmd.txt',header=T)
 ```
 Run the BP sex-stratified colocalization of CVD GWAS provided
 ```
