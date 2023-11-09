@@ -1,5 +1,5 @@
 # BP-sex-specific-pleiotropy
-<img src="https://github.com/momo121099/BP-sex-specific-pleiotropy/blob/main/Picture1.png" width=30% height=30%>
+<img src="https://github.com/momo121099/BP-sex-specific-pleiotropy/blob/main/Picture1.png" width=50% height=50%>
 
 
 ## Description:
