@@ -5,8 +5,9 @@
 The primary objective of this pipeline script is to identify regions associated with blood pressure (BP) that exhibit sex-specific pleiotropy concerning a cardiovascular disease (CVD) trait, leveraging the GWAS data provided by the user. We utilize sex-stratified genetic associations for systolic blood pressure (SBP), diastolic blood pressure (DBP), or pulse pressure (PP) from the UK Biobank (UKB) dataset, ensuring equal sample sizes for different sexes (ML Yang, et al.). This analysis focuses specifically on the top BP loci regions identified in the BP GWAS. By comparing the posterior probabilities of colocalization, we can screen and identify possible candidate BP regions with sex-specific and sex-biased pleiotropy in relation to the CVD trait of interest. It's important to note that the genomic locations used for this comparison should be based on GRCh37/hg19.
 
 ## Prerequisites:
-1. R packages and functions
-Install these packages below (coloc, data.table, reshape) in R program and then source our implementation function first:
+1. R packages and functions:
+   
+Install these packages below (coloc, data.table, reshape) in R program and then source our implementation function first.
 
 Refer this page for more detailed information: https://github.com/chr1swallace/coloc
 ```
@@ -30,7 +31,7 @@ bp.sex.colocalization(cvd.data,bp.trait='PP',cvd.trait='CVD',...)
 ## Input Arguments:
 **cvd.data**: This parameter represents the user's provided GWAS data for the cardiovascular disease (CVD) trait of interest. The format for this input file is described below.
 
-An example file is available in the directory, sourced from the FMD GWAS (A. Georges, M.L. Yang, T.E. Berrandou, et al., 2021). Please ensure that the header of your file adheres to the following specifications, and note that the genome assembly version should be GRCh37/hg19.
+An example file is included in the directory, sourced from the FMD GWAS (A. Georges, M.L. Yang, T.E. Berrandou, et al., Nature Communications, 2021). Please ensure that the header of your file adheres to the following specifications, and be mindful that the genome assembly version should be GRCh37/hg19, and the SNPID format should follow this pattern: CHR:BP.
    
    >    CHR     BP    BETA     SE   pval    SNPID
    > 
@@ -88,21 +89,23 @@ Two files will be generated in the same directory folder:
 >
 > 
 ## Example Usage:
-**Please use files in the data folder**
+*Please use files in the data folder*
 
-**Source the function file first**
+Download folder from FTP site link:(pending)
+
+*Source the function file first*
 ```
 source('BP_sex_specific_CVD_colocalization_function.R')
 ```
-**Read the example input CVD GWAS file in the same folder from the downloaded package**
+*Read the example input CVD GWAS file located in the same folder*
 ```
 cvd.data=fread('example_data_fmd.txt',header=T)
 ```
-**Execute the sex-stratified colocalization analysis for specified BP trait using the user-provided cardiovascular disease (CVD) GWAS data. This analysis systematically screens for potential candidate BP-associated regions exhibiting sex-specific pleiotropic effects related to the user's CVD of interest**
+*Execute the sex-stratified colocalization analysis for specified BP trait using the user-provided cardiovascular disease (CVD) GWAS data. This analysis systematically screens for potential candidate BP-associated regions exhibiting sex-specific pleiotropic effects related to the user's CVD of interest*
 ```
 bp.sex.colocalization(cvd.data,bp.trait='PP',cvd.trait='FMD',size=8656,p=0.3,Type='b',poster.p='H4',gene.pull.method='max',wd=250000, diff=0.5, cutoff=0.5)
 ```
-**Generate plots for the specified candidate region displaying sex-specific pleiotropy, as described in the section below.**
+*Generate plots for the specified candidate region displaying sex-specific pleiotropy, as described in the section below*
 ```
 bp.sex.region.locus.plot(outname='13q34',cvd.data,bp.trait='PP',cvd.trait='FMD',pos.chr=13,pos.st=110546007,pos.ed=111046007)
 ```
@@ -128,15 +131,18 @@ bp.sex.region.locus.plot(outname,cvd.data,bp.trait,cvd.trait,pos.chr,pos.st,pos.
 
 *post.ed: End base pair position (hg19) for plotting the regional analysis.
 
+**Output**
+Generate and save figures representing genetic associations for female-only BP, male-only BP, and CVD within a specified region. Save these figures in 'png' format.
+
 ## R Shiny app tool
 **Another tool available is the R Shiny app, which enables interactive viewing of regional plots for sex-stratified BP genetic association results.**
 
-**Source the shiny app function file to use**
+*Source the shiny app function file to use*
 ```
 source('shiny_readfile_select_region.R')
 ```
 ## References:
-Please cite this paper if you utilize this implementation:
+Please cite this paper if you utilize this pipeline script:
 
 Yang, M.-L., Xu, C., Gupte, T., Hoffmann, T. J., Iribarren, C., Zhou, X., & Ganesh, S. K. (2023). Leveraging sex differences of the complex genetic architecture of blood pressure to define sex-biased arterial genome regulation and cardiovascular disease risks.
 
