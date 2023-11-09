@@ -82,7 +82,7 @@ source('BP_sex_specific_CVD_colocalization_function.R')
 ```
 Read the input CVD GWAS file 
 ```
-cvd.data=read.table('example_data_fmd.txt',header=T)
+cvd.data=fread('example_data_fmd.txt',header=T)
 ```
 Run the BP sex-stratified colocalization of CVD GWAS provided
 ```
