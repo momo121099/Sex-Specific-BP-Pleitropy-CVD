@@ -131,7 +131,7 @@ bp.sex.region.locus.plot(outname,cvd.data,bp.trait,cvd.trait,pos.chr,pos.st,pos.
 
 *post.ed: End base pair position (hg19) for plotting the regional analysis.
 
-**Output**
+**Output**:
 Generate and save figures representing genetic associations for female-only BP, male-only BP, and CVD within a specified region. Save these figures in 'png' format.
 
 ## R Shiny app tool
