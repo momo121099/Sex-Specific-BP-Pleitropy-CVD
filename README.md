@@ -17,6 +17,8 @@ install.packages('reshape')
 
 source('BP_sex_specific_CVD_colocalization_function.R')
 ```
+## Download the files required for this analysis (pending) 
+FTP site:
 
 ## Function Name:
 bp.sex.colocalization()
