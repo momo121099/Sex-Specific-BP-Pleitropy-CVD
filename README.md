@@ -56,8 +56,8 @@ Two files will be generated in the same directory folder:
 
 2. "bp.trait_cvd.trait_GWAS_colocalization.csv": This file provides the posterior probability output for cross-trait GWAS colocalization between blood pressure (BP) and the user's CVD trait across all BP regions.
 
-## CVD GWAS Input file format
-An example file is available in the GitHub directory, sourced from the FMD GWAS (A. Georges, M.L. Yang, T.E. Berrandou, et al., 2021).
+## User's CVD GWAS Input file format
+An example file is available in the directory, sourced from the FMD GWAS (A. Georges, M.L. Yang, T.E. Berrandou, et al., 2021).
 Please ensure that the header of your file matches the following specifications:
 
 >    CHR     BP    BETA     SE   pval    SNPID
