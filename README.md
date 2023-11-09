@@ -2,7 +2,7 @@
 ## Description:
 The primary objective of this implementation is to identify regions associated with blood pressure (BP) that exhibit sex-specific pleiotropy concerning a cardiovascular disease (CVD) trait, leveraging the GWAS data provided by the user. We utilize sex-stratified genetic associations for systolic blood pressure (SBP), diastolic blood pressure (DBP), or pulse pressure (PP) from the UK Biobank (UKB) dataset, ensuring equal sample sizes for different sexes (ML Yang, et al.). This analysis focuses specifically on the top BP loci regions identified in the BP GWAS. By comparing the posterior probabilities of colocalization, we can screen and identify possible candidate BP regions with sex-specific and sex-biased pleiotropy in relation to the CVD trait of interest. It's important to note that the genomic locations used for this comparison should be based on GRCh37/hg19.
 
-## First, install these packages, and then source the implementation functions
+## Install these packages and then source the implementation functions first:
 Refer this page for more detailed information: https://github.com/chr1swallace/coloc
 ```
 if(!require("remotes"))
@@ -78,6 +78,25 @@ The posterior probability of cross-trait GWAS colocalization between female bloo
 > 
 > MAP9        4 156141307 156656653 0.97318459 0.167642370
 > 
+## Follow-up visualization of regional plot
+#Use the following function:
+```
+bp.sex.region.locus.plot(outname,cvd.data,bp.trait,cvd.trait,pos.chr,pos.st,pos.ed)
+```
+#Arguments:
+outname: output file name prefix
+
+cvd.data: This parameter represents the user's GWAS data for the cardiovascular disease (CVD) trait of interest. The format for this input file is described above.
+
+bp.trait: Specify the sex-stratified GWAS data for blood pressure (BP) traits sourced from the UK Biobank (UKB), as detailed by ML Yang et al. You have the option to choose from 'SBP' (systolic blood pressure), 'DBP' (diastolic blood pressure), or 'PP' (pulse pressure).
+
+cvd.trait: Input the name of the user's cardiovascular disease (CVD) trait of interest. This trait name will be incorporated into the output file name for reference.
+
+post.chr: Chromosome for plotting the regional analysis.
+
+post.st: Start base pair position (hg19) for plotting the regional analysis.
+
+post.ed: End base pair position (hg19) for plotting the regional analysis.
 
 ## Example Usage (Please use files in the data folder):
 Source the function file first
@@ -92,6 +111,11 @@ Run the BP sex-stratified colocalization of CVD GWAS provided
 ```
 bp.sex.colocalization(cvd.data,bp.trait='PP',cvd.trait='FMD',size=8656,p=0.3,Type='b',poster.p='H4',gene.pull.method='max',wd=250000, diff=0.5, cutoff=0.5)
 ```
+Plot the candidate sex-specific pleiotropy regions
+```
+bp.sex.region.locus.plot(outname='13q34',cvd.data,bp.trait='PP',cvd.trait='FMD',pos.chr=13,pos.st=110546007,pos.ed=111046007)
+```
+
 ## References:
 Please cite this paper if you utilize this implementation:
 Yang, M.-L., Xu, C., Gupte, T., Hoffmann, T. J., Iribarren, C., Zhou, X., & Ganesh, S. K. (2023). Leveraging sex differences of the complex genetic architecture of blood pressure to define sex-biased arterial genome regulation and cardiovascular disease risks.
