@@ -4,7 +4,7 @@ The purpose of this implementation is to identify BP-associated regions with sex
 Based on the comparison of colocalization posterior probabilities, we can pinpoint BP candidate regions with sex-specific and sex-biased pleiotropy with the CVD trait of interest (ML Yang, et al.).
 
 ## Usage:
-bp.sex.colocalization(cvd.data,bp.trait='PP',cvd.trait='CVD',size=1000,p=0.3,Type='b',poster.p='H4',gene.pull.method='mean',wd=250000, diff=0.5, cutoff=0.5)
+bp.sex.colocalization(cvd.data,bp.trait='PP',cvd.trait='CVD',...)
 
 ## Arguments:
 *cvd.data: This parameter represents the user's GWAS data for the cardiovascular disease (CVD) trait of interest. The format for this input file is described below.
@@ -40,8 +40,6 @@ Two files will be generated in the same directory folder:
 An example file is available in the GitHub directory, sourced from the FMD GWAS (A. Georges, M.L. Yang, T.E. Berrandou, et al., 2021).
 Please ensure that the header of your file matches the following specifications:
 
-> headers: CHR  BP  BETA  SE  pval SNPID
-> 
 >    CHR     BP    BETA     SE   pval    SNPID
 > 
 > 1 845635 -0.0218 0.0652 0.7382 1:845635
@@ -49,6 +47,20 @@ Please ensure that the header of your file matches the following specifications:
 > 1 845938 -0.0295 0.0643 0.6463 1:845938
 > 
 > 1 846078 -0.0066 0.0651 0.9197 1:846078
+>
+> 
+## Output file format
+The posterior probability of cross-trait GWAS colocalization between female blood pressure (BP) and the user's cardiovascular disease (CVD) trait (PP.Female), as well as between male BP and the user's CVD trait (PP.Male), is computed for each genetic region. These regions are labeled based on the nearest gene associated with each index SNP.
+  
+>           PP.Female     PP.Male
+> 
+>CDK5RAP3  0.51669662 0.017111463
+> 
+>CDKN2B-AS 0.94682902 0.115410849
+> 
+>COL4A1    0.89081951 0.001874087
+> 
+>COL4A2    0.91857381 0.002075756
 > 
 
 ## Example Usage:
@@ -59,12 +71,13 @@ BP_sex_specific_CVD_colocalization_function.R
 Read the input CVD GWAS file 
 ```
 input=read.table('example_data_fmd.txt',header=T)
-head(input)
 ```
-
->
-
+Run the BP sex-stratified colocalization of CVD GWAS provided
+```
+bp.sex.colocalization(cvd.data,bp.trait='PP',cvd.trait='FMD',size=8656,p=0.3,Type='b',poster.p='H4',gene.pull.method='max',wd=250000, diff=0.5, cutoff=0.5)
+```
 ## References:
-Please cite this paper if you utilized this implementation
+Please cite this paper if you utilize this implementation:
+Yang, M.-L., Xu, C., Gupte, T., Hoffmann, T. J., Iribarren, C., Zhou, X., & Ganesh, S. K. (2023). Leveraging sex differences of the complex genetic architecture of blood pressure to define sex-biased arterial genome regulation and cardiovascular disease risks.
 
 
