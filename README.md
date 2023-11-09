@@ -97,7 +97,7 @@ cvd.data=fread('example_data_fmd.txt',header=T)
 ```
 bp.sex.colocalization(cvd.data,bp.trait='PP',cvd.trait='FMD',size=8656,p=0.3,Type='b',poster.p='H4',gene.pull.method='max',wd=250000, diff=0.5, cutoff=0.5)
 ```
-Generate plots for the specified candidate region displaying sex-specific pleiotropy, as described in the section below.
+*Generate plots for the specified candidate region displaying sex-specific pleiotropy, as described in the section below.
 ```
 bp.sex.region.locus.plot(outname='13q34',cvd.data,bp.trait='PP',cvd.trait='FMD',pos.chr=13,pos.st=110546007,pos.ed=111046007)
 ```
