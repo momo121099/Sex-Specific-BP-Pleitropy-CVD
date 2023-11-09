@@ -78,7 +78,7 @@ The posterior probability of cross-trait GWAS colocalization between female bloo
 ## Example Usage (Please use files in the data folder):
 Source the function file first
 ```
-source(BP_sex_specific_CVD_colocalization_function.R)
+source('BP_sex_specific_CVD_colocalization_function.R')
 ```
 Read the input CVD GWAS file 
 ```
