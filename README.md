@@ -64,15 +64,19 @@ Please ensure that the header of your file matches the following specifications:
 >
 > 
 ## Output file format
-The posterior probability of cross-trait GWAS colocalization between female blood pressure (BP) and the user's cardiovascular disease (CVD) trait (PP.Female), as well as between male BP and the user's CVD trait (PP.Male), is computed for each genetic region. These regions are labeled based on the nearest gene associated with each index SNP.
+The posterior probability of cross-trait GWAS colocalization between female blood pressure (BP) and the user's cardiovascular disease (CVD) trait (PP.Female), as well as between male BP and the user's CVD trait (PP.Male), is computed for each genetic region. These regions are labeled based on the nearest gene associated with each index SNP. CHR:ST-ED is the genetic region for colocalziation.
   
->  PP.Female     PP.Male
+>          CHR        ST        ED  PP.Female     PP.Male
 > 
-> CDKN2B-AS 0.94682902 0.115410849
+> CDK5RAP3   17  45794308  46294308 0.52032436 0.016675401
 > 
-> COL4A1    0.89081951 0.001874087
+> CDKN2B-AS   9  21874504  22374504 0.94674890 0.115265842
 > 
-> COL4A2    0.91857381 0.002075756
+> COL4A1     13 110546007 111046007 0.88984010 0.001853196
+> 
+> COL4A2     13 110790681 111290681 0.91783466 0.002051632
+> 
+> MAP9        4 156141307 156656653 0.97318459 0.167642370
 > 
 
 ## Example Usage (Please use files in the data folder):
