@@ -5,7 +5,7 @@
 ## Description:
 The primary objective of this implementation is to identify regions associated with blood pressure (BP) that exhibit sex-specific pleiotropy concerning a cardiovascular disease (CVD) trait, leveraging the GWAS data provided by the user. We utilize sex-stratified genetic associations for systolic blood pressure (SBP), diastolic blood pressure (DBP), or pulse pressure (PP) from the UK Biobank (UKB) dataset, ensuring equal sample sizes for different sexes (ML Yang, et al.). This analysis focuses specifically on the top BP loci regions identified in the BP GWAS. By comparing the posterior probabilities of colocalization, we can screen and identify possible candidate BP regions with sex-specific and sex-biased pleiotropy in relation to the CVD trait of interest. It's important to note that the genomic locations used for this comparison should be based on GRCh37/hg19.
 
-## Install coloc and these packages and then source our implementation functions first:
+## Install these packages below (coloc, data.table, reshape) and then source our implementation functions first:
 Refer this page for more detailed information: https://github.com/chr1swallace/coloc
 ```
 if(!require("remotes"))
@@ -129,5 +129,9 @@ source('shiny_readfile_select_region.R')
 ## References:
 Please cite this paper if you utilize this implementation:
 Yang, M.-L., Xu, C., Gupte, T., Hoffmann, T. J., Iribarren, C., Zhou, X., & Ganesh, S. K. (2023). Leveraging sex differences of the complex genetic architecture of blood pressure to define sex-biased arterial genome regulation and cardiovascular disease risks.
+
+## About our Lab:
+University of Michigan, Cardiovascular Medicine
+https://www.ganeshlab.org/
 
 
