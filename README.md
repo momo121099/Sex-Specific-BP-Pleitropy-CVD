@@ -10,8 +10,8 @@ if(!require("remotes"))
    install.packages("remotes") # if necessary
 library(remotes)
 install_github("chr1swallace/coloc@main",build_vignettes=TRUE)
-install.pacakges('data.table')
-install.pacakges('reshape')
+install.packages('data.table')
+install.packages('reshape')
 ```
 
 ## Usage:
