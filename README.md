@@ -1,7 +1,6 @@
 # BP sex-specific pleiotropy of CVD
 <img src="https://github.com/momo121099/BP-sex-specific-pleiotropy/blob/main/Picture1.png" width=60% height=60%>
 
-
 ## Description:
 The primary objective of this implementation is to identify regions associated with blood pressure (BP) that exhibit sex-specific pleiotropy concerning a cardiovascular disease (CVD) trait, leveraging the GWAS data provided by the user. We utilize sex-stratified genetic associations for systolic blood pressure (SBP), diastolic blood pressure (DBP), or pulse pressure (PP) from the UK Biobank (UKB) dataset, ensuring equal sample sizes for different sexes (ML Yang, et al.). This analysis focuses specifically on the top BP loci regions identified in the BP GWAS. By comparing the posterior probabilities of colocalization, we can screen and identify possible candidate BP regions with sex-specific and sex-biased pleiotropy in relation to the CVD trait of interest. It's important to note that the genomic locations used for this comparison should be based on GRCh37/hg19.
 
@@ -86,15 +85,15 @@ The posterior probability of cross-trait GWAS colocalization between female bloo
 >
 
 ## Example Usage (Please use files in the data folder):
-Source the function file first
+*Source the function file first
 ```
 source('BP_sex_specific_CVD_colocalization_function.R')
 ```
-Read the input CVD GWAS file 
+*Read the example input CVD GWAS file in the same folder from the downloaded package
 ```
 cvd.data=fread('example_data_fmd.txt',header=T)
 ```
-Run the BP sex-stratified colocalization of CVD GWAS provided
+*Execute the sex-stratified colocalization analysis for specified BP trait using the user-provided cardiovascular disease (CVD) GWAS data. This analysis systematically screens for potential candidate BP-associated regions exhibiting sex-specific pleiotropic effects related to the user's CVD of interest
 ```
 bp.sex.colocalization(cvd.data,bp.trait='PP',cvd.trait='FMD',size=8656,p=0.3,Type='b',poster.p='H4',gene.pull.method='max',wd=250000, diff=0.5, cutoff=0.5)
 ```
@@ -124,8 +123,6 @@ bp.sex.region.locus.plot(outname,cvd.data,bp.trait,cvd.trait,pos.chr,pos.st,pos.
 *post.ed: End base pair position (hg19) for plotting the regional analysis.
 
 ## Another tool available is the R Shiny app, which enables interactive viewing of regional plots for sex-stratified BP genetic association results. 
-NOTE: Only regions with significant BP-associated variants will be shown. 
-
 Source the shiny app function file to use
 ```
 source('shiny_readfile_select_region.R')
