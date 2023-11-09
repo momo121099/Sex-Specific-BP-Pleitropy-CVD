@@ -14,7 +14,7 @@ install.packages('data.table')
 install.packages('reshape')
 ```
 
-## Usage:
+## Function Usage:
 bp.sex.colocalization(cvd.data,bp.trait='PP',cvd.trait='CVD',...)
 
 ## Arguments:
