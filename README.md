@@ -1,6 +1,6 @@
 # BP-sex-specific-pleiotropy
 ![Sex-specific BP pleiotropy of CVD](https://github.com/momo121099/BP-sex-specific-pleiotropy/blob/main/Picture1.png =250x250)
-<img src="[https://github.com/momo121099/BP-sex-specific-pleiotropy/blob/main/Picture1.png]" width="200" height="200">
+<img src="https://github.com/momo121099/BP-sex-specific-pleiotropy/blob/main/Picture1.png" width=50% height=50%>
 
 
 ## Description:
