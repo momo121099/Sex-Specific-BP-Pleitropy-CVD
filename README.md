@@ -18,7 +18,7 @@ install_github("chr1swallace/coloc@main",build_vignettes=TRUE)
 install.packages('data.table')
 install.packages('reshape')
 
-git clone https://github.com/momo121099/BP-sex-specific-pleiotropy.git
+git clone https://github.com/momo121099/Sex-Specific-BP-Pleitropy_CVD.git
 source('Sex_Specific_BP_Pleiotropy_CVD_function.R')
 ```
 2. Download the BP sex-stratified GWAS files required for this analysis
