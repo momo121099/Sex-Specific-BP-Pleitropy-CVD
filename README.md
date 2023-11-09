@@ -19,7 +19,7 @@ install.packages('data.table')
 install.packages('reshape')
 
 git clone https://github.com/momo121099/BP-sex-specific-pleiotropy.git
-source('BP_sex_specific_CVD_colocalization_function.R')
+source('Sex_Specific_BP_Pleiotropy_CVD_function.R')
 ```
 2. Download the BP sex-stratified GWAS files required for this analysis
    
@@ -95,7 +95,7 @@ Download folder from FTP site link:(pending)
 
 *Source the function file first*
 ```
-source('BP_sex_specific_CVD_colocalization_function.R')
+source('Sex_Specific_BP_Pleiotropy_CVD_function.R')
 ```
 *Read the example input CVD GWAS file located in the same folder*
 ```
@@ -139,7 +139,7 @@ Generate and save figures representing genetic associations for female-only BP, 
 
 *Source the shiny app function file to use*
 ```
-source('shiny_readfile_select_region.R')
+source('shiny_sex_BP_select_region.R')
 ```
 ## References:
 Please cite this paper if you utilize this pipeline script:
