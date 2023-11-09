@@ -38,7 +38,7 @@ bp.sex.colocalization(cvd.data,bp.trait='PP',cvd.trait='CVD',...)
 
 *gene.pull.method: Specify the method for aggregating colocalization posterior probability information from regions sharing the same nearest gene. You can opt for either 'mean' or 'max' to calculate either the average or maximum values, respectively.
 
-*wd: Define the window size in base pair positions around the top index SNP for each BP region during colocalization. The default is +/- 250Kb of the index SNP.
+*wd: Define the window size in base pair positions around the top index SNP for each BP region during colocalization. The default is +/- 250Kb of the index SNP. Maximum is +/- 500 Kb.
 
 *diff: Set the threshold for the absolute difference in posterior probabilities between male and female BP colocalization with CVD. This threshold is employed to identify genes that exhibit sex-biased colocalization.
 
