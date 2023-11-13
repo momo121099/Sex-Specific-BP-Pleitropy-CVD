@@ -171,6 +171,11 @@ bp.sex.region.locus.plot(outname,cvd.data,bp.trait,cvd.trait,pos.chr,pos.st,pos.
 ## OUTPUT:
 Generate and save figures representing genetic associations for female-only BP, male-only BP, and CVD within a specified region. These figures will be saved in 'png' format.
 
+## III. Other Shiny app for visualization
+Explore additional Shiny applications for interactive visualization of regional genetic association plots of female and male blood pressure (BP) data
+```
+source('shiny_sex_BP_select_region.R')
+```
 ## References:
 Please cite this paper if you utilize this pipeline script:
 
