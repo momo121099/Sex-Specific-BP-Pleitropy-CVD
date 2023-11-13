@@ -21,9 +21,12 @@ install.packages('reshape')
 git clone https://github.com/momo121099/Sex-Specific-BP-Pleitropy_CVD.git
 source('Sex_Specific_BP_Pleiotropy_CVD_function.R')
 ```
-2. Download the BP sex-stratified GWAS files required for this analysis
-   
-FTP site link:(pending)
+2. Please download all the sex-stratified BP GWAS files listed below, as they are required for this analysis:
+
+GWAS catalog FTP link:
+(pending)
+
+Place these files in the same folder as the pipeline script directory.
 
 ## Usage:
 bp.sex.colocalization(cvd.data,bp.trait='PP',cvd.trait='CVD',...)
