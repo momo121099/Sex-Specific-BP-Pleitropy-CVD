@@ -44,7 +44,7 @@ wget https://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/GCST90026001-GC
 ```
 4. Read the example input CVD file and convert it to our compatible format.
 
-For your own analysis, you should use your CVD data with complete summary statistics and adapt it to the specified format provided below.
+For your own analysis, you should use your CVD data with complete summary statistics and format it according to the specified format provided below (please note that the header names should be exactly the same and case-sensitive)
 ```
 cvd.data<-fread('GCST90026612_buildGRCh37.tsv',header=T)
 cvd.data1=data.frame(cvd.data$chromosome,cvd.data$base_pair_location,cvd.data$BETA,cvd.data$SE,cvd.data$p_value)
@@ -131,7 +131,7 @@ An example file is included in the directory, sourced from the FMD GWAS (A. Geor
 
 **cutoff**: Establish a threshold for the posterior probability to identify genes displaying sex-specific colocalization. Genes meeting this criterion will have a posterior probability greater than this cutoff in only one sex. The combination of the diff and cutoff values will be used together to screen for the top BP genes displaying sex-specific pleiotropic effects with CVD.
 
-## OUTPUT:
+## Output:
 Two files will be generated in the same directory folder:
 
 **"bp.trait_cvd.trait_GWAS_colocalization_topSEXGene.csv"**:
@@ -160,7 +160,7 @@ Two files will be generated in the same directory folder:
 ## II. Visualization of regional plot
 ## Usage for bp.sex.region.locus.plot():
 ```
-bp.sex.region.locus.plot(outname,cvd.data,bp.trait,cvd.trait,pos.chr,pos.st,pos.ed)
+bp.sex.region.locus.plot(outname,cvd.data,bp.trait,cvd.trait,locus.chr,locus.st,locus.ed)
 ```
 ## Input Arguments:
 
@@ -172,15 +172,14 @@ bp.sex.region.locus.plot(outname,cvd.data,bp.trait,cvd.trait,pos.chr,pos.st,pos.
 
 *cvd.trait: Input the name of the user's cardiovascular disease (CVD) trait of interest. This trait name will be incorporated into the output file name for reference.
 
-*post.chr: Chromosome for plotting the regional analysis.
+*locus.chr: Chromosome for plotting the regional analysis.
 
-*post.st: Start base pair position (hg19) for plotting the regional analysis.
+*locus.st: Start base pair position (hg19) for plotting the regional analysis.
 
-*post.ed: End base pair position (hg19) for plotting the regional analysis.
+*locus.ed: End base pair position (hg19) for plotting the regional analysis.
 
-## OUTPUT:
+## Output:
 Generate and save figures representing genetic associations for female-only BP, male-only BP, and CVD within a specified region. These figures will be saved in 'png' format.
-
 
 ## References:
 Please cite this paper if you utilize this pipeline script:
