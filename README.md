@@ -1,4 +1,4 @@
-# Sex-Specific BP Pleiotropy of CVD (<ins>SSBP<ins>)
+# Sex-Specific BP Pleiotropy of CVD 
 <img src="https://github.com/momo121099/BP-sex-specific-pleiotropy/blob/main/Picture1.png" width=60% height=60%>
 
 ## A. Introduction:
