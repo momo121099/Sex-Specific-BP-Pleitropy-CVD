@@ -3,23 +3,23 @@ library(data.table)
 library(coloc)
 library(reshape)
 
-sbp<-fread('SBP_female_male_bolt_imputed_result_MAF0.01_short.txt',header=T)
-dbp<-fread('DBP_female_male_bolt_imputed_result_MAF0.01_short.txt',header=T)
-pp<-fread('PP_female_male_bolt_imputed_result_MAF0.01_short.txt',header=T)
+sbp.f<-fread('UKB_SBP_female_bolt_imputed_result_MAF0.01.tsv',header=T)
+sbp.m<-fread('UKB_SBP_male_bolt_imputed_result_MAF0.01.tsv',header=T)
+dbp.f<-fread('UKB_DBP_female_bolt_imputed_result_MAF0.01.tsv',header=T)
+dbp.m<-fread('UKB_DBP_male_bolt_imputed_result_MAF0.01.tsv',header=T)
+pp.f<-fread('UKB_PP_female_bolt_imputed_result_MAF0.01.tsv',header=T)
+pp.m<-fread('UKB_PP_male_bolt_imputed_result_MAF0.01.tsv',header=T)
+
 
 top.sbp=read.csv(paste('SBP_topsnp_reigon_annot.csv',sep=''),header=T)
 top.dbp=read.csv(paste('DBP_topsnp_reigon_annot.csv',sep=''),header=T)
 top.pp=read.csv(paste('PP_topsnp_reigon_annot.csv',sep=''),header=T)
 
-#Example usage
-#cvd.data<-fread('example_data_fmd.txt',header=T)
-#bp.sex.colocalization(cvd.data,bp.trait='PP',cvd.trait='FMD',size=8656,p=0.3,Type='b',poster.p='H4',gene.pull.method='max',wd=250000, diff=0.5, cutoff=0.5)
-
 bp.sex.colocalization<-function(cvd.data,bp.trait='PP',cvd.trait='CVD',size=1000,p=0.3,Type='b',poster.p='H4',gene.pull.method='mean',wd=250000, diff=0.5, cutoff=0.5){
 start_time <- Sys.time()
-if(bp.trait=='SBP'){data1=sbp;top=top.sbp}
-if(bp.trait=='DBP'){data1=dbp;top=top.dbp}
-if(bp.trait=='PP'){data1=pp;top=top.pp}
+if(bp.trait=='SBP'){data1.f=sbp.f;data1.m=sbp.m;top=top.sbp}
+if(bp.trait=='DBP'){data1.f=dbp.f;data1.m=dbp.m;top=top.dbp}
+if(bp.trait=='PP'){data1.f=pp.f;data1.m=pp.m;top=top.pp}
 top=top[order(top$region),]
 
 out.all<-NULL
@@ -28,27 +28,27 @@ for(i in 1:nrow(top)){
     print(i)
 	locus.chr=top$CHR[i]
 	locus.bp=top$BP[i]
-	data.subset<-data1[which(data1$CHR==locus.chr&data1$BP>=locus.bp-wd&data1$BP<=locus.bp+wd),]
+	bp.male<-data1.m[which(data1.m$chromosome==locus.chr&data1.m$base_pair_location>=locus.bp-wd&data1.m$base_pair_location<=locus.bp+wd),]
+	bp.female<-data1.f[which(data1.f$chromosome==locus.chr&data1.f$base_pair_location>=locus.bp-wd&data1.f$base_pair_location<=locus.bp+wd),]
+	bp.male$MAF=bp.male$effect_allele_frequency;bp.male$MAF[bp.male$effect_allele_frequency>0.5]=1-bp.male$effect_allele_frequency[bp.male$effect_allele_frequency>0.5]
+	bp.female$MAF=bp.female$effect_allele_frequency;bp.female$MAF[bp.female$effect_allele_frequency>0.5]=1-bp.female$effect_allele_frequency[bp.female$effect_allele_frequency>0.5]
 	data.subset2<-cvd.data[which(cvd.data$CHR==locus.chr&cvd.data$BP>=locus.bp-wd&cvd.data$BP<=locus.bp+wd),]
 
-	if(nrow(data.subset)>0&nrow(data.subset2)>0){
-		bp.male<-data.subset[,c(1:7,13)]
-		bp.female<-data.subset[,c(1:2,8:13)]
-		colnames(bp.male)<-colnames(bp.female)<-c('chr','BP','rsid','beta','se','pval','maf','SNPID')
-		bp.male=bp.male[order(bp.male$pval),]; bp.male=bp.male[!duplicated(bp.male$SNPID),]
-		bp.female=bp.female[order(bp.female$pval),];bp.female=bp.female[!duplicated(bp.female$SNPID),]
-		input1 <- merge(bp.female, data.subset2, by="SNPID", all=FALSE, suffixes=c("_gwas_female_trait1","_gwas_trait2"))
-		input2 <- merge(bp.male, data.subset2, by="SNPID", all=FALSE, suffixes=c("_gwas_male_trait1","_gwas_trait2"))
-		m=which(is.na(as.numeric(input1$pval_gwas_trait2))==T)
+	if(nrow(bp.male)>0&nrow(data.subset2)>0){
+		bp.male=bp.male[order(bp.male$p_value),]; bp.male=bp.male[!duplicated(bp.male$pos.hg19),]
+		bp.female=bp.female[order(bp.female$p_value),];bp.female=bp.female[!duplicated(bp.female$pos.hg19),]
+		input1 <- merge(bp.female, data.subset2, by="pos.hg19", all=FALSE, suffixes=c("_gwas_female_trait1","_gwas_trait2"))
+		input2 <- merge(bp.male, data.subset2, by="pos.hg19", all=FALSE, suffixes=c("_gwas_male_trait1","_gwas_trait2"))
+		m=which(is.na(as.numeric(input1$pval))==T)
 		if(length(m)>0){input1=input1[-m,];input2=input2[-m,]}
 		if(nrow(input1)!=0){
 			if(Type=='b'){
-				result1 <- coloc.abf(dataset1=list(snp=input1$SNPID, pvalues=input1$pval_gwas_female_trait1,type="quant", N=174664, beta=input1$beta,verbeta=input1$se^2), dataset2=list(snp=input1$SNPID, pvalues=as.numeric(input1$pval_gwas_trait2), beta=input1$BETA,verbeta=input1$SE^2, type="cc", N=size, s=p), MAF=input1$maf)
-				result2 <- coloc.abf(dataset1=list(snp=input2$SNPID, pvalues=input2$pval_gwas_male_trait1,  type="quant", N=174664, beta=input2$beta,verbeta=input2$se^2), dataset2=list(snp=input2$SNPID, pvalues=as.numeric(input2$pval_gwas_trait2), beta=input2$BETA,verbeta=input2$SE^2, type="cc", N=size, s=p), MAF=input2$maf)
+				result1 <- coloc.abf(dataset1=list(snp=input1$pos.hg19, pvalues=input1$p_value,type="quant", N=174664, beta=input1$beta,verbeta=input1$standard_error^2), dataset2=list(snp=input1$pos.hg19, pvalues=as.numeric(input1$pval), beta=input1$BETA,verbeta=input1$SE^2, type="cc", N=size, s=p), MAF=input1$MAF)
+				result2 <- coloc.abf(dataset1=list(snp=input2$pos.hg19, pvalues=input2$p_value,  type="quant", N=174664, beta=input2$beta,verbeta=input2$standard_error^2), dataset2=list(snp=input2$pos.hg19, pvalues=as.numeric(input2$pval), beta=input2$BETA,verbeta=input2$SE^2, type="cc", N=size, s=p), MAF=input2$MAF)
 			}
 			if(Type=='q'){
-				result1 <- coloc.abf(dataset1=list(snp=input1$SNPID, pvalues=input1$pval_gwas_female_trait1,type="quant", N=174664, beta=input1$beta,verbeta=input1$se^2), dataset2=list(snp=input1$SNPID, pvalues=as.numeric(input1$pval_gwas_trait2), beta=as.numeric(input1$BETA),verbeta=as.numeric(input1$SE)^2, type="quant", N=size), MAF=input1$maf)
-				result2 <- coloc.abf(dataset1=list(snp=input2$SNPID, pvalues=input2$pval_gwas_male_trait1,type="quant", N=174664, beta=input2$beta,verbeta=input2$se^2), dataset2=list(snp=input2$SNPID, pvalues=as.numeric(input2$pval_gwas_trait2), beta=as.numeric(input2$BETA),verbeta=as.numeric(input2$SE)^2, type="quant", N=size), MAF=input2$maf)
+				result1 <- coloc.abf(dataset1=list(snp=input1$pos.hg19, pvalues=input1$p_value,type="quant", N=174664, beta=input1$beta,verbeta=input1$standard_error^2), dataset2=list(snp=input1$pos.hg19, pvalues=as.numeric(input1$pval), beta=as.numeric(input1$BETA),verbeta=as.numeric(input1$SE)^2, type="quant", N=size), MAF=input1$MAF)
+				result2 <- coloc.abf(dataset1=list(snp=input2$pos.hg19, pvalues=input2$p_value,type="quant", N=174664, beta=input2$beta,verbeta=input2$standard_error^2), dataset2=list(snp=input2$pos.hg19, pvalues=as.numeric(input2$pval), beta=as.numeric(input2$BETA),verbeta=as.numeric(input2$SE)^2, type="quant", N=size), MAF=input2$MAF)
 			}
 
 			out<-c(result1$summary,result2$summary[-1])
@@ -130,14 +130,11 @@ plot.region<-function(data,ch,bp,p,locus,pos.chr,pos.st,pos.ed,maxp,alpha){
 ###locus plot for the entire region
 	par(mar=c(5,10,5,2),font.axis=2,font=2,font.lab=2)
 	par(mgp=c(1.6,0.5,0))
-	subdata<-subset(data,data[,ch]==pos.chr&data[,bp]>=pos.st&data[,bp]<=pos.ed)
-	data.subset2<-cvd.data[which(cvd.data$CHR==locus.chr&cvd.data$BP>=locus.bp-wd&cvd.data$BP<=locus.bp+wd),]
-
-	m<-which(subdata[,p]<alpha)
+	subdata<-data[which(CHR==pos.chr&BP>=pos.st&BP<=pos.ed),]
 	#maxp<-max(-log10(subdata[,p]),na.rm=T)
 	#locus figure	
 	plot(subdata[,bp],-log10(subdata[,p]),pch=19,ylab='-log10(P-value)',cex=1.4,cex.lab=1.5,cex.axis=1.2,cex.main=1.8,col='gray31',ylim=c(0,maxp+2),xlim=c(pos.st,pos.ed),xlab='pos(bp.hg19)',main=locus)
-	points(subdata[m,bp],-log10(subdata[m,p]),col='brown',pch=19,cex=1.6)
+	abline(h=40, col="blue")
 }
 
 ##annotation
@@ -149,7 +146,7 @@ annot_plot<-function(pos.chr,pos.st,pos.ed){
 	text(c(-3,-3,-3),c(2.75),labels=c('RefGene'),col=c('dark blue'),cex=1.5,font=4,srt = 0,adj=1.85,xpd=T)	
 
 	##DNA annotation
-	refgene<-read.table('~/Work/Reference_database/annotation/refGene_hg19.txt',header=F)
+	refgene<-read.table('refGene_hg19.txt',header=F)
 
 	##refgene
 	subref<-subset(refgene,(refgene[,3]==paste('chr',pos.chr,sep='')&(refgene[,5]>=pos.st&refgene[,5]<=pos.ed))|(refgene[,3]==paste('chr',pos.chr,sep='')&(refgene[,6]>=pos.st&refgene[,6]<=pos.ed)))
@@ -177,22 +174,25 @@ annot_plot<-function(pos.chr,pos.st,pos.ed){
 }
 
 
-bp.sex.region.locus.plot<-function(outname,cvd.data,bp.trait='PP',cvd.trait='CVD',pos.chr,pos.st,pos.ed){
-	if(bp.trait=='SBP'){data1=sbp}
-	if(bp.trait=='DBP'){data1=dbp}
-	if(bp.trait=='PP'){data1=pp}
-	sub1<-subset(data1,CHR==pos.chr&BP>=pos.st&BP<=pos.ed)
-	set2<-cvd.data[which(cvd.data$CHR==pos.chr&cvd.data$BP>=pos.st&cvd.data$BP<=pos.ed),]
+bp.sex.region.locus.plot<-function(outname,cvd.data,bp.trait='PP',cvd.trait='CVD',locus.chr,locus.st,locus.ed){
+	print(outname)
+	if(bp.trait=='SBP'){data1.f=sbp.f;data1.m=sbp.m;top=top.sbp}
+	if(bp.trait=='DBP'){data1.f=dbp.f;data1.m=dbp.m;top=top.dbp}
+	if(bp.trait=='PP'){data1.f=pp.f;data1.m=pp.m;top=top.pp}
+	bp.male<-data1.m[which(data1.m$chromosome==locus.chr&data1.m$base_pair_location>=locus.st&data1.m$base_pair_location<=locus.ed),]
+	bp.female<-data1.f[which(data1.f$chromosome==locus.chr&data1.f$base_pair_location>=locus.st&data1.f$base_pair_location<=locus.ed),]
 
+	sub2<-cvd.data[which(cvd.data$CHR==locus.chr&cvd.data$BP>=locus.st&cvd.data$BP<=locus.ed),]
 	locus1=paste(bp.trait,' female-only GWAS',sep='')
 	locus2=paste(bp.trait,' male-only GWAS',sep='')
 	locus3=paste(cvd.trait,' GWAS',sep='')
-	maxp=max(c(-log10(sub1[,6]),-log10(sub1[,11]),-log10(set2[,5]),na.rm=T))
+	maxp=max(c(-log10(bp.male$p_value),-log10(bp.female$p_value),-log10(sub2$pval)),na.rm=T)
 	png(paste(outname,'gene_locus.png',sep=''),width=1000,height=1000)
 	layout(matrix(data=c(1,2,3,4), nrow=4, ncol=1), heights=c(3,3,3,3))
-	plot.region(sub1,1,2,11,locus1,pos.chr,pos.st,pos.ed,maxp,5e-8)
-	plot.region(sub1,1,2,6,locus2,pos.chr,pos.st,pos.ed,maxp,5e-8)
-	plot.region(data.subset2,1,2,31,locus3,pos.chr,pos.st,pos.ed,maxp,5e-8)
-	annot_plot(pos.chr,pos.st,pos.ed)
+	plot(bp.female$base_pair_location,-log10(bp.female$p_value),pch=19,ylab='-log10(P-value)',cex=1.4,cex.lab=1.5,cex.axis=1.2,cex.main=1.8,col='purple',ylim=c(0,maxp+2),xlim=c(locus.st,locus.ed),xlab='pos(bp.hg19)',main=locus1)
+	plot(bp.male$base_pair_location,-log10(bp.male$p_value),pch=19,ylab='-log10(P-value)',cex=1.4,cex.lab=1.5,cex.axis=1.2,cex.main=1.8,col='blue',ylim=c(0,maxp+2),xlim=c(locus.st,locus.ed),xlab='pos(bp.hg19)',main=locus2)
+	plot(sub2$BP,-log10(sub2$pval),pch=19,ylab='-log10(P-value)',cex=1.4,cex.lab=1.5,cex.axis=1.2,cex.main=1.8,col='black',ylim=c(0,max(-log10(sub2$pval))+1),xlim=c(locus.st,locus.ed),xlab='pos(bp.hg19)',main=locus3)
+	
+	annot_plot(locus.chr,locus.st,locus.ed)
 	dev.off()
 }
