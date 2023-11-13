@@ -2,7 +2,7 @@
 <img src="https://github.com/momo121099/BP-sex-specific-pleiotropy/blob/main/Picture1.png" width=60% height=60%>
 
 ## A. Introduction:
-The pipeline aims to identify regions associating blood pressure (BP) with sex-specific pleiotropy in a specified cardiovascular disease (CVD) trait. It utilizes both user-provided GWAS data and sex-stratified GWAS data from the UK Biobank (UKB) dataset, focusing on SBP, DBP, or PP, with equal sample sizes for different sexes (ML Yang, et al.). The analysis involves assessing the top BP loci regions from these sex-stratified GWAS datasets to identify potential candidate BP regions displaying sex-specific and sex-biased pleiotropy in relation to the CVD trait. Genomic locations are determined based on the GRCh37/hg19 reference.
+The pipeline aims to identify genetic regions associated with blood pressure (BP) that has sex-specific pleiotropy with the user specified cardiovascular disease (CVD) trait. It utilizes both user-provided GWAS data and sex-stratified GWAS data of SBP, DBP, or PP trait from the UK Biobank (UKB) dataset with equal sample sizes for different sexes (ML Yang, et al.). The analysis involves assessing the top BP loci regions from these sex-stratified GWAS datasets to identify potential candidate BP regions displaying sex-specific and sex-biased pleiotropy in relation to the CVD trait. Genomic locations are determined based on the GRCh37/hg19 reference.
 
 ## B. Prerequisites:
 1. R packages and functions:
