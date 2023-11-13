@@ -58,7 +58,7 @@ head(cvd.data1)
 >    1 846078 -0.0066 0.0651 0.9197 1:846078
 
 ## D. Cross-trait sex-specific colocalization:
-5. Source the function file first*
+5. Source the function file first
 ```
 source('Sex_Specific_BP_Pleiotropy_CVD_function.R')
 ```
@@ -68,9 +68,9 @@ This analysis will systematically screens for potential candidate BP-associated 
 bp.sex.colocalization(cvd.data1,bp.trait='PP',cvd.trait='FMD',size=8656,p=0.3,Type='b',poster.p='H4',gene.pull.method='max',wd=250000, diff=0.5, cutoff=0.5)
 ```
 ## E. Follow-up visualization:
-7. Generate plots for the candidate region specified, illustrating sex-specific pleiotropy as detailed in the section below. You can individually examine the regional plots to further filter genes.
-
-Read the output file from cross-trait sex-specific colocalization screening.
+7. Generate plots for the candidate region specified, illustrating sex-specific pleiotropy as detailed in the section below.
+You can individually examine the regional plots to further filter genes.
+Read the output file from cross-trait sex-specific colocalization screening:
 ```
 bp.trait='PP'
 cvd.trait='FMD'
@@ -82,7 +82,11 @@ for(i in 1:nrow(sex.gene)){
 bp.sex.region.locus.plot(outname=sex.gene[i,1],cvd.data1,bp.trait='PP',cvd.trait='FMD',locus.chr=sex.gene$CHR[i],locus.st=sex.gene$ST[i],locus.ed=sex.gene$ED[i])
 }
 ```
-
+## F. Other Shiny app for visualization
+Explore additional Shiny applications for interactive visualization of regional genetic association plots of female and male blood pressure (BP) data
+```
+source('shiny_sex_BP_select_region.R')
+```
 ## I. Screen for BP-associated regions with sex-specific pleiotropy of CVD
 ## Usage for bp.sex.colocalization():
 bp.sex.colocalization(cvd.data,bp.trait='PP',cvd.trait='CVD',...)
@@ -171,11 +175,7 @@ bp.sex.region.locus.plot(outname,cvd.data,bp.trait,cvd.trait,pos.chr,pos.st,pos.
 ## OUTPUT:
 Generate and save figures representing genetic associations for female-only BP, male-only BP, and CVD within a specified region. These figures will be saved in 'png' format.
 
-## III. Other Shiny app for visualization
-Explore additional Shiny applications for interactive visualization of regional genetic association plots of female and male blood pressure (BP) data
-```
-source('shiny_sex_BP_select_region.R')
-```
+
 ## References:
 Please cite this paper if you utilize this pipeline script:
 
