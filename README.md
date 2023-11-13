@@ -26,38 +26,30 @@ source('Sex_Specific_BP_Pleiotropy_CVD_function.R')
 GWAS catalog FTP link:
 (pending)
 
-Place these files in the same folder as the pipeline script directory.
+After downloading, place these files in the same folder as the pipeline script directory.
 
-3. Download the example CVD GWAS file from a previous FMD GWAS result, including complete summary statistics (A. Georges, M.L. Yang, T.E. Berrandou, et al., Nature Communications, 2021)
+## File Preparation and Example Usage:
+3. Download the example CVD GWAS file from a previous FMD GWAS result available in the GWAS catalog, which includes the complete summary statistics (A. Georges, M.L. Yang, T.E. Berrandou, et al., Nature Communications, 2021).
+   Put them in the same folder or the designated directory.
 ```
 wget https://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/GCST90026001-GCST90027000/GCST90026612/GCST90026612_buildGRCh37.tsv
 ```
-4. Read input CVD filea and change it to our compatible format
+4. Read the example input CVD file and convert it to our compatible format
 ```
 cvd.data<-fread('GCST90026612_buildGRCh37.tsv',header=T)
 cvd.data1=data.frame(cvd.data$chromosome,cvd.data$base_pair_location,cvd.data$BETA,cvd.data$SE,cvd.data$p_value)
 colnames(cvd.data1)=c('CHR','BP','BETA','SE','pval')
 cvd.data1$pos.hg19=paste(cvd.data1$CHR,':',cvd.data1$BP,sep='')
 ```
-
-## Example Usage:
-*Please use files in the data folder*
-
-Download folder from FTP site link:(pending)
-
-*Source the function file first*
+5. Source the function file first*
 ```
 source('Sex_Specific_BP_Pleiotropy_CVD_function.R')
 ```
-*Read the example input CVD GWAS file located in the same folder*
-```
-cvd.data<-fread('GCST90026612_buildGRCh37.tsv',header=T)
-```
-*Execute the sex-stratified colocalization analysis for specified BP trait using the user-provided cardiovascular disease (CVD) GWAS data. This analysis systematically screens for potential candidate BP-associated regions exhibiting sex-specific pleiotropic effects related to the user's CVD of interest*
+6. Execute the sex-stratified colocalization analysis for specified BP trait using the user-provided cardiovascular disease (CVD) GWAS data. This analysis systematically screens for potential candidate BP-associated regions exhibiting sex-specific pleiotropic effects related to the user's CVD of interest*
 ```
 bp.sex.colocalization(cvd.data,bp.trait='PP',cvd.trait='FMD',size=8656,p=0.3,Type='b',poster.p='H4',gene.pull.method='max',wd=250000, diff=0.5, cutoff=0.5)
 ```
-*Generate plots for the specified candidate region displaying sex-specific pleiotropy, as described in the section below*
+7. Generate plots for the specified candidate region displaying sex-specific pleiotropy, as described in the section below*
 ```
 bp.sex.region.locus.plot(outname='13q34',cvd.data,bp.trait='PP',cvd.trait='FMD',pos.chr=13,pos.st=110546007,pos.ed=111046007)
 ```
