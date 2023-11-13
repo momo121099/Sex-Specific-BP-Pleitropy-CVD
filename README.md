@@ -37,11 +37,14 @@ After downloading, place these files in the same folder as the pipeline script d
 
 ## C. File Preparation:
 3. Download the example CVD GWAS file from a previous FMD GWAS result available in the GWAS catalog, which includes the complete summary statistics (A. Georges, M.L. Yang, T.E. Berrandou, et al., Nature Communications, 2021).
+
    Put it in the same folder or the designated directory.
 ```
 wget https://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/GCST90026001-GCST90027000/GCST90026612/GCST90026612_buildGRCh37.tsv
 ```
-4. Read the example input CVD file and convert it to our compatible format.For your own analysis, you should use your CVD data with complete summary statistics and adapt it to the specified format provided below.
+4. Read the example input CVD file and convert it to our compatible format.
+
+For your own analysis, you should use your CVD data with complete summary statistics and adapt it to the specified format provided below.
 ```
 cvd.data<-fread('GCST90026612_buildGRCh37.tsv',header=T)
 cvd.data1=data.frame(cvd.data$chromosome,cvd.data$base_pair_location,cvd.data$BETA,cvd.data$SE,cvd.data$p_value)
@@ -63,13 +66,16 @@ head(cvd.data1)
 source('Sex_Specific_BP_Pleiotropy_CVD_function.R')
 ```
 6. Cross-trait sex-specific colocalization: Execute the sex-stratified colocalization analysis for specified BP trait using the user-provided cardiovascular disease (CVD) GWAS data.
-This analysis will systematically screens for potential candidate BP-associated regions exhibiting sex-specific pleiotropic effects related to the user's CVD of interest*
+
+This analysis will systematically screens for potential candidate BP-associated regions exhibiting sex-specific pleiotropic effects related to the user's CVD of interest.
 ```
 bp.sex.colocalization(cvd.data1,bp.trait='PP',cvd.trait='FMD',size=8656,p=0.3,Type='b',poster.p='H4',gene.pull.method='max',wd=250000, diff=0.5, cutoff=0.5)
 ```
 ## E. Follow-up visualization:
 7. Generate plots for the candidate region specified, illustrating sex-specific pleiotropy as detailed in the section below.
+
 You can individually examine the regional plots to further filter genes.
+
 Read the output file from cross-trait sex-specific colocalization screening:
 ```
 bp.trait='PP'
