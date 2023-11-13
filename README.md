@@ -57,7 +57,7 @@ head(cvd.data1)
 > 
 >    1 846078 -0.0066 0.0651 0.9197 1:846078
 
-## D. Example Usage:
+## D. Cross-trait sex-specific colocalization:
 5. Source the function file first*
 ```
 source('Sex_Specific_BP_Pleiotropy_CVD_function.R')
