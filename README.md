@@ -35,19 +35,29 @@ wget
 ```
 After downloading, place these files in the same folder as the pipeline script directory.
 
-## File Preparation and Example Usage:
+## File Preparation:
 3. Download the example CVD GWAS file from a previous FMD GWAS result available in the GWAS catalog, which includes the complete summary statistics (A. Georges, M.L. Yang, T.E. Berrandou, et al., Nature Communications, 2021).
    Put them in the same folder or the designated directory.
 ```
 wget https://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/GCST90026001-GCST90027000/GCST90026612/GCST90026612_buildGRCh37.tsv
 ```
-4. Read the example input CVD file and convert it to our compatible format
+4. Read the example input CVD file and convert it to our compatible format. Alternatively, you can use your own CVD data with complete summary statistics and adapt it to the specified format provided below.
 ```
 cvd.data<-fread('GCST90026612_buildGRCh37.tsv',header=T)
 cvd.data1=data.frame(cvd.data$chromosome,cvd.data$base_pair_location,cvd.data$BETA,cvd.data$SE,cvd.data$p_value)
 colnames(cvd.data1)=c('CHR','BP','BETA','SE','pval')
 cvd.data1$pos.hg19=paste(cvd.data1$CHR,':',cvd.data1$BP,sep='')
+head(cvd.data1)
 ```
+>    CHR     BP    BETA     SE   pval pos.hg19
+> 
+>    1 845635 -0.0218 0.0652 0.7382 1:845635
+>
+>    1 845938 -0.0295 0.0643 0.6463 1:845938
+> 
+>    1 846078 -0.0066 0.0651 0.9197 1:846078
+
+## Example Usage:
 5. Source the function file first*
 ```
 source('Sex_Specific_BP_Pleiotropy_CVD_function.R')
