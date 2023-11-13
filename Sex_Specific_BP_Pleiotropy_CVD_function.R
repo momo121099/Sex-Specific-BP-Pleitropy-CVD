@@ -126,17 +126,6 @@ return(sex.gene.matrix)
 
 
 
-plot.region<-function(data,ch,bp,p,locus,pos.chr,pos.st,pos.ed,maxp,alpha){
-###locus plot for the entire region
-	par(mar=c(5,10,5,2),font.axis=2,font=2,font.lab=2)
-	par(mgp=c(1.6,0.5,0))
-	subdata<-data[which(CHR==pos.chr&BP>=pos.st&BP<=pos.ed),]
-	#maxp<-max(-log10(subdata[,p]),na.rm=T)
-	#locus figure	
-	plot(subdata[,bp],-log10(subdata[,p]),pch=19,ylab='-log10(P-value)',cex=1.4,cex.lab=1.5,cex.axis=1.2,cex.main=1.8,col='gray31',ylim=c(0,maxp+2),xlim=c(pos.st,pos.ed),xlab='pos(bp.hg19)',main=locus)
-	abline(h=40, col="blue")
-}
-
 ##annotation
 annot_plot<-function(pos.chr,pos.st,pos.ed){
 	size<-pos.ed-pos.st
