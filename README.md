@@ -25,14 +25,7 @@ source('Sex_Specific_BP_Pleiotropy_CVD_function.R')
 
 GWAS catalog FTP link:
 (pending)
-```
-wget
-wget
-wget
-wget
-wget
-wget
-```
+
 After downloading, place these files in the same folder as the pipeline script directory.
 
 ## C. File Preparation:
