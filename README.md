@@ -24,9 +24,29 @@ source('Sex_Specific_BP_Pleiotropy_CVD_function.R')
 2. Please download all the sex-stratified BP GWAS files listed below, as they are required for this analysis:
 
 GWAS catalog FTP link:
-(pending)
 
-After downloading, place these files in the same folder as the pipeline script directory.
+UKB SBP combined-sex studies-
+https://www.ebi.ac.uk/gwas/studies/GCST90301695
+UKB SBP female-only studies-
+https://www.ebi.ac.uk/gwas/studies/GCST90301696
+UKB SBP male-only studies-
+https://www.ebi.ac.uk/gwas/studies/GCST90301697
+
+UKB DBP combined-sex studies-
+https://www.ebi.ac.uk/gwas/studies/GCST90301698
+UKB DBP female-only studies-
+https://www.ebi.ac.uk/gwas/studies/GCST90301699
+UKB DBP male-only studies-
+https://www.ebi.ac.uk/gwas/studies/GCST90301700
+
+UKB PP combined-sex studies-
+https://www.ebi.ac.uk/gwas/studies/GCST90301701
+UKB PP female-only studies-
+https://www.ebi.ac.uk/gwas/studies/GCST90301702
+UKB PP male-only studies-
+https://www.ebi.ac.uk/gwas/studies/GCST90301703
+
+Click on the links above, then select 'FTP Download' under the 'Study Information' section, followed by 'Full Summary Statistics'. This action will direct you to the FTP site for downloading the full summary statistics data. Once downloaded, store these files in the same directory as the pipeline script.
 
 ## C. File Preparation:
 3. Download the example CVD GWAS file from a previous FMD GWAS result available in the GWAS catalog, which includes the complete summary statistics (A. Georges, M.L. Yang, T.E. Berrandou, et al., Nature Communications, 2021).
