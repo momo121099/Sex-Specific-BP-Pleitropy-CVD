@@ -26,24 +26,39 @@ source('Sex_Specific_BP_Pleiotropy_CVD_function.R')
 GWAS catalog FTP link:
 
 UKB SBP combined-sex studies-
+
 https://www.ebi.ac.uk/gwas/studies/GCST90301695
+
 UKB SBP female-only studies-
+
 https://www.ebi.ac.uk/gwas/studies/GCST90301696
+
 UKB SBP male-only studies-
+
 https://www.ebi.ac.uk/gwas/studies/GCST90301697
 
 UKB DBP combined-sex studies-
+
 https://www.ebi.ac.uk/gwas/studies/GCST90301698
+
 UKB DBP female-only studies-
+
 https://www.ebi.ac.uk/gwas/studies/GCST90301699
+
 UKB DBP male-only studies-
+
 https://www.ebi.ac.uk/gwas/studies/GCST90301700
 
 UKB PP combined-sex studies-
+
 https://www.ebi.ac.uk/gwas/studies/GCST90301701
+
 UKB PP female-only studies-
+
 https://www.ebi.ac.uk/gwas/studies/GCST90301702
+
 UKB PP male-only studies-
+
 https://www.ebi.ac.uk/gwas/studies/GCST90301703
 
 Click on the links above, then select 'FTP Download' under the 'Study Information' section, followed by 'Full Summary Statistics'. This action will direct you to the FTP site for downloading the full summary statistics data. Once downloaded, store these files in the same directory as the pipeline script.
